@@ -28,7 +28,7 @@ jobs:
           node-version: "18.x"
       - name: Print environment variables
         run: |
-          echo ${{ secrets }}
+          echo ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
           echo "NEXT_PUBLIC_FIREBASE_API_KEY: $NEXT_PUBLIC_FIREBASE_API_KEY"
           echo "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: $NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN"
 
