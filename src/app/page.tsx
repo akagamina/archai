@@ -9,6 +9,7 @@ import { CameraIcon, PhotoIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 
 function WebcamCapture() {
+  const { setLoading } = useUser();
   const webcamRef = React.useRef<Webcam>(null);
   const [image, setImage] = useState<any>();
 
@@ -19,12 +20,22 @@ function WebcamCapture() {
   const { user } = useUser();
 
   const uploadImage = async () => {
-    const imageBlob = await (await fetch(image)).blob();
+    setLoading(true);
+    try {
+      const imageBlob = await (await fetch(image)).blob();
 
-    const imageFile = new File([imageBlob], `image/${user?.uid}`, {
-      type: "image/png",
-    });
-    const suggestions = await uploadImageAndGetDesignSuggestions(imageFile);
+      const imageFile = new File([imageBlob], `image/${user?.uid}`, {
+        type: "image/png",
+      });
+      const suggestions: any = await uploadImageAndGetDesignSuggestions(
+        imageFile
+      );
+      window.open(suggestions?.data[0].url, "_blank");
+      setLoading(false);
+    } catch (error) {
+      console.error("Error in uploadImage: ", error);
+      setLoading(false);
+    }
   };
 
   return (
@@ -32,7 +43,7 @@ function WebcamCapture() {
       <div className="relative">
         {image ? (
           <Image
-            width={400}
+            width={500}
             height={400}
             src={image}
             alt="Captured"

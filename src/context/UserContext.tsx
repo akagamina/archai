@@ -26,6 +26,7 @@ interface UserContextType {
   user: User | null;
   setUser: (user: User | null) => void;
   signOutUser: () => void;
+  setLoading: (loading: boolean) => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -38,7 +39,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
-  console.log("loading: ", loading);
 
   const signOutUser = async () => {
     await signOut(auth);
@@ -73,7 +73,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser, signOutUser }}>
+    <UserContext.Provider value={{ user, setUser, signOutUser, setLoading }}>
       {children}
     </UserContext.Provider>
   );
