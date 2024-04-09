@@ -31,3 +31,79 @@ body {
     text-wrap: balance;
   }
 }
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0f2c40;
+}
+
+.blueprint-loader {
+  opacity: 0;
+  animation: fadeIn 3s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f3f3f3;
+}
+
+.login-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://files.oaiusercontent.com/file-bXfqGiBHiQIanmRwxYVWtuNj?se=2024-04-07T23%3A28%3A09Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3Dd1e8b7d3-6988-44b4-8bf1-545fe22ff477.webp&sig=aKpM/HiIfsbMK9bKKffQWPGZDcCr9OpuE3lf0%2BKjfeY%3D");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.login-content {
+  z-index: 10;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.google-login-button {
+  background-color: #4285f4;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.google-login-button:hover {
+  background-color: #357ae8;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
