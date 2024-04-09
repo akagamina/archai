@@ -4,9 +4,7 @@ const Loader = () => {
   return (
     <div className="loader-container">
       <Image
-        src={"/imag4.webp"}
-        objectFit="contain"
-        layout="intrinsic"
+        src={"/image4.png"}
         width={400}
         height={400}
         alt="Architectural Blueprint"

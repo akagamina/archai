@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const isLoggedIn: any = request.cookies.get("isLoggedIn");
-  console.log("isLoggedIn: ", isLoggedIn);
 
   if (
     isLoggedIn?.value === "false" &&
