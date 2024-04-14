@@ -1,9 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    loader: "akamai",
-    path: "",
-  },
-};
+const nextConfig = {};
 
 export default nextConfig;

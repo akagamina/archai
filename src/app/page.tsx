@@ -64,8 +64,6 @@ function WebcamCapture() {
           <Webcam
             audio={false}
             videoConstraints={{
-              width: 1280,
-              height: 720,
               facingMode: "environment",
             }}
             ref={webcamRef}
