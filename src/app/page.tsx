@@ -38,6 +38,17 @@ function WebcamCapture() {
     }
   };
 
+  // if device is mobile return text to use desktop
+  if (typeof window !== "undefined" && window.innerWidth > 768) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-2xl text-white">
+          Please use a mobile phone to access this feature
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex bg-gray-100">
       <div className="relative">
@@ -52,6 +63,11 @@ function WebcamCapture() {
         ) : (
           <Webcam
             audio={false}
+            videoConstraints={{
+              width: 1280,
+              height: 720,
+              facingMode: "environment",
+            }}
             ref={webcamRef}
             mirrored={true}
             screenshotFormat="image/jpeg"
