@@ -12,8 +12,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import Loader from "@/components/Loader";
-import { deleteCookie, setCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
+import { usePathname, useRouter } from "next/navigation";
 
 interface User {
   uid: string;
@@ -39,6 +39,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
+  const pathname = usePathname();
 
   const signOutUser = async () => {
     await signOut(auth);
@@ -52,12 +53,15 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     const unsubscribe = onAuthStateChanged(
       auth,
       (firebaseUser: FirebaseUser | null) => {
-        console.log("firebaseUser: ", firebaseUser);
         if (firebaseUser) {
           const { uid, email, displayName, photoURL } = firebaseUser;
           setUser({ uid, email, displayName, photoURL });
         } else {
           setUser(null);
+        }
+        const token = getCookie("Bearer");
+        if (!token) {
+          router.push("/sign-in");
         }
         setTimeout(() => {
           setLoading(false);
@@ -66,7 +70,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     );
 
     return () => unsubscribe();
-  }, []);
+  }, [router]);
 
   if (loading) {
     return <Loader />; // Yükleme sırasında Loading bileşenini göster
