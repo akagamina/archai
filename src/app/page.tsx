@@ -67,7 +67,6 @@ function WebcamCapture() {
               facingMode: "environment",
             }}
             ref={webcamRef}
-            mirrored={true}
             screenshotFormat="image/jpeg"
             className="rounded-lg"
             height={720}
