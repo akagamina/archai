@@ -60,7 +60,7 @@ function WebcamCapture() {
                     design potential 24/7.
                   </p>
                   <Link
-                    href="/take-a-shot"
+                    href="/take-shot"
                     className="jos button relative z-[1] inline-flex items-center gap-3 rounded-[50px] border-none bg-colorViolet py-[18px] text-white after:bg-colorOrangyRed hover:text-white"
                   >
                     Start Designing for Free
