@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 function Home() {
+  console.log("Home page");
   return (
     <main className="main-wrapper relative overflow-hidden">
       <section id="hero-section">
