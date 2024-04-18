@@ -4,11 +4,16 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 
 function Home() {
   console.log("Home page");
+
   return (
     <main className="main-wrapper relative overflow-hidden">
+      <Head>
+        <title>Enhance Creativity with AI-Driven Design | TureAI</title>
+      </Head>
       <section id="hero-section">
         <div className="relative overflow-hidden bg-black text-white">
           <div className="pb-28 pt-28 md:pb-40 lg:pt-28 xl:pb-[90px] xl:pt-[122px]">

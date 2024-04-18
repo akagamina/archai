@@ -6,6 +6,7 @@ import uploadImageAndGetDesignSuggestions from "@/services/gpt4Service";
 import { useUser } from "@/context/UserContext";
 import { CameraIcon, PhotoIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
+import Head from "next/head";
 
 function TakeAShot() {
   const { setLoading } = useUser();
@@ -53,6 +54,9 @@ function TakeAShot() {
 
   return (
     <div className="flex h-[100svh] justify-center items-center p-4">
+      <Head>
+        <title>Enhance Creativity with AI-Driven Design | TureAI</title>
+      </Head>
       <div className="relative">
         {image ? (
           <>
