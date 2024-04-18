@@ -60,7 +60,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
           setUser(null);
         }
         const token = getCookie("Bearer");
-        if (!token) {
+        if (!token && pathname !== "/") {
           router.push("/sign-in");
         }
         setTimeout(() => {
@@ -70,7 +70,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     );
 
     return () => unsubscribe();
-  }, [router]);
+  }, [pathname, router]);
 
   if (loading) {
     return <Loader />; // Yükleme sırasında Loading bileşenini göster
