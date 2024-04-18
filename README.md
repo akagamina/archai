@@ -1,6 +1,6 @@
-# Architectai - Architecture Visualization Platform
+# TureAI - Architecture Visualization Platform
 
-Architectai is a web-based platform designed for architects, interior designers, and enthusiasts to visualize and collaborate on architectural projects. Built with React, Next.js 14, Tailwind CSS, and TypeScript, Architectai provides an intuitive and responsive interface for users to upload room images and receive AI-generated design suggestions.
+TureAI is a web-based platform designed for architects, interior designers, and enthusiasts to visualize and collaborate on architectural projects. Built with React, Next.js 14, Tailwind CSS, and TypeScript, TureAI provides an intuitive and responsive interface for users to upload room images and receive AI-generated design suggestions.
 
 ## Features
 
@@ -11,11 +11,11 @@ Architectai is a web-based platform designed for architects, interior designers,
 
 ## Getting Started
 
-To get started with Architectai, follow these steps:
+To get started with TureAI, follow these steps:
 
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/akagamina/architectai.git
-   cd architectai
+   git clone https://github.com/akagamina/TureAI.git
+   cd TureAI
    ```
