@@ -1,22 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Head from "next/head";
 import ImageSlider from "@/components/ImageSlider";
 
 function Home() {
-  const [slideIndex, setSlideIndex] = useState(0);
-
-  const handleSlide = (direction: string) => {
-    if (direction === "right" && slideIndex < 100) {
-      setSlideIndex(slideIndex + 10);
-    } else if (direction === "left" && slideIndex > 0) {
-      setSlideIndex(slideIndex - 10);
-    }
-  };
   return (
     <>
       <head>
