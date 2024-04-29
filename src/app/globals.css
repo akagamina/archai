@@ -55,6 +55,23 @@ body {
   }
 }
 
+.slider-container {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-container {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+}
+
 .login-container {
   display: flex;
   justify-content: center;
@@ -75,6 +92,8 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   animation: fadeIn 2s ease-in-out;
+  filter: blur(100px);
+  z-index: -1;
 }
 
 .login-content {

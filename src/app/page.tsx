@@ -1,14 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
+import ImageSlider from "@/components/ImageSlider";
 
 function Home() {
-  console.log("Home page");
+  const [slideIndex, setSlideIndex] = useState(0);
 
+  const handleSlide = (direction: string) => {
+    if (direction === "right" && slideIndex < 100) {
+      setSlideIndex(slideIndex + 10);
+    } else if (direction === "left" && slideIndex > 0) {
+      setSlideIndex(slideIndex - 10);
+    }
+  };
   return (
     <main className="main-wrapper relative overflow-hidden">
       <Head>
@@ -46,14 +54,7 @@ function Home() {
                 </div>
 
                 <div className="hero-img overflow-hidden rounded-2xl bg-black text-right">
-                  <Image
-                    src="/img/content-2.webp"
-                    alt="hero-img-2"
-                    loading="lazy"
-                    width="1296"
-                    height="640"
-                    className="h-auto w-full"
-                  />
+                  <ImageSlider />
                 </div>
               </div>
             </div>

@@ -5,21 +5,18 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import {
-  onAuthStateChanged,
-  User as FirebaseUser,
-  signOut,
-} from "firebase/auth";
-import { auth } from "../../firebase-config";
 import Loader from "@/components/Loader";
-import { deleteCookie, getCookie, setCookie } from "cookies-next";
+import { deleteCookie, setCookie } from "cookies-next";
 import { usePathname, useRouter } from "next/navigation";
+import { supabase } from "@/services/supabaseClientService";
+import toast, { Toaster } from "react-hot-toast";
 
 interface User {
   uid: string;
   email: string | null;
   displayName: string | null;
   photoURL: string | null;
+  [key: string]: any;
 }
 
 interface UserContextType {
@@ -27,6 +24,7 @@ interface UserContextType {
   setUser: (user: User | null) => void;
   signOutUser: () => void;
   setLoading: (loading: boolean) => void;
+  addUserProperty?: (prop: any) => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -42,43 +40,50 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const pathname = usePathname();
 
   const signOutUser = async () => {
-    await signOut(auth);
-    setUser(null);
+    supabase.auth.signOut();
     deleteCookie("Bearer");
-    deleteCookie("isLoggedIn");
+    setUser(null);
     router.push("/sign-in");
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (firebaseUser: FirebaseUser | null) => {
-        if (firebaseUser) {
-          const { uid, email, displayName, photoURL } = firebaseUser;
-          setUser({ uid, email, displayName, photoURL });
-        } else {
-          setUser(null);
-        }
-        const token = getCookie("Bearer");
-        if (!token && pathname !== "/") {
-          router.push("/sign-in");
-        }
-        setTimeout(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        console.log("event: ", event);
+        const user = session?.user;
+        if (user) {
+          setUser(user as any);
+          setCookie("Bearer", session?.access_token, {
+            expires: new Date((session?.expires_at as number) * 1000),
+          });
+          router.push("/");
           setLoading(false);
-        }, 1000);
+          event === "INITIAL_SESSION" && toast.success("Welcome back!");
+        } else {
+          router.push("/sign-in");
+          setTimeout(() => {
+            setUser(null);
+            setLoading(false);
+          }, 1000);
+        }
       }
     );
 
-    return () => unsubscribe();
-  }, [pathname, router]);
-
-  if (loading) {
-    return <Loader />; // Yükleme sırasında Loading bileşenini göster
-  }
+    return () => {
+      authListener?.subscription.unsubscribe();
+      console.log("asd");
+    };
+  }, [router, setUser]);
 
   return (
     <UserContext.Provider value={{ user, setUser, signOutUser, setLoading }}>
-      {children}
+      <div className={`${loading ? "visible" : "invisible"} absolute w-full`}>
+        <Loader />
+      </div>
+      <div className={`${!loading ? "visible" : "invisible"}`}>{children}</div>
+      <div>
+        <Toaster />
+      </div>
     </UserContext.Provider>
   );
 };

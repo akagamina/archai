@@ -18,10 +18,10 @@ const uploadImageAndGetDesignSuggestions = async (imageFile: File) => {
     await uploadBytes(storageRef, imageFile);
     const imageUrl = await getDownloadURL(storageRef);
     const prompt =
-      "Analyze roughly the image URL provided and list three key details: the approximate square footage of the room, the layout, and the placement of items. Act like architect. Max 3 sentences 50 characters in total.";
+      "What’s in this image? Analyze the room. Act like architect. Max 3 sentences 50 characters in total.";
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4-vision-preview",
+      model: "gpt-4-turbo",
       messages: [
         {
           role: "user",

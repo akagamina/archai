@@ -19,8 +19,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <UserProvider>
-          {pathname !== "/sign-in" || (pathname !== "/" && <Header />)}
+          <Header />
           <main>{children}</main>
+          <div className="visible"></div>
+          <div className="invisible"></div>
         </UserProvider>
       </body>
     </html>

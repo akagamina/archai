@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import uploadImageAndGetDesignSuggestions from "@/services/gpt4Service";
 import { useUser } from "@/context/UserContext";
@@ -9,19 +10,15 @@ import Image from "next/image";
 import Head from "next/head";
 
 function TakeAShot() {
-  const { setLoading } = useUser();
   const webcamRef = React.useRef<Webcam>(null);
   const [image, setImage] = useState<any>();
-  const [url, setUrl] = useState<string>("");
-  console.log("url: ", url);
-
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current?.getScreenshot();
     setImage(imageSrc ?? null);
   }, [webcamRef]);
-  const { user } = useUser();
+  const { user, setLoading } = useUser();
 
-  const uploadImage = async () => {
+  const uploadImage = useCallback(async () => {
     setLoading(true);
     try {
       const imageBlob = await (await fetch(image)).blob();
@@ -32,14 +29,13 @@ function TakeAShot() {
       const suggestions: any = await uploadImageAndGetDesignSuggestions(
         imageFile
       );
-      setLoading(false);
       console.log(suggestions);
-      setUrl(suggestions?.data[0]?.url);
+      setLoading(false);
     } catch (error) {
       console.error("Error in uploadImage: ", error);
       setLoading(false);
     }
-  };
+  }, [image, setLoading, user?.uid]);
 
   // if device is mobile return text to use desktop
   if (typeof window !== "undefined" && window.innerWidth > 768) {
@@ -80,7 +76,7 @@ function TakeAShot() {
             height={720}
           />
         )}
-        {url && <Image src={url} width={500} height={400} alt="Design" />}
+        {/* {url && <img src={url} width={500} height={400} alt="Design" />} */}
         <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-4">
           {image ? (
             <button
