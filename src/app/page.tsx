@@ -71,9 +71,9 @@ function Home() {
                   className="jos flex flex-col gap-x-[30px] gap-y-6 sm:flex-row"
                   data-jos_delay="0.1"
                 >
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-inherit p-4 shadow-[0_4px_60px_0_rgba(0,0,0,0.1)]">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-transparent p-4 ">
                     <Image
-                      src="/img/th-2/icon-feature-1.svg"
+                      src="/img/th-2/icon-feature-1.png"
                       alt="icon-feature-1"
                       width="49"
                       height="45"
@@ -94,9 +94,9 @@ function Home() {
                   className="jos flex flex-col gap-x-[30px] gap-y-6 sm:flex-row"
                   data-jos_delay="0.2"
                 >
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-inherit p-4 shadow-[0_4px_60px_0_rgba(0,0,0,0.1)]">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-inherit p-4 ">
                     <Image
-                      src="/img/th-2/icon-feature-2.svg"
+                      src="/img/th-2/icon-feature-2.png"
                       alt="icon-feature-2"
                       width="45"
                       height="45"
@@ -117,9 +117,9 @@ function Home() {
                   className="jos flex flex-col gap-x-[30px] gap-y-6 sm:flex-row"
                   data-jos_delay="0.3"
                 >
-                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-inherit p-4 shadow-[0_4px_60px_0_rgba(0,0,0,0.1)]">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-inherit p-4 ">
                     <Image
-                      src="/img/th-2/icon-feature-3.svg"
+                      src="/img/th-2/icon-feature-3.png"
                       alt="icon-feature-3"
                       width="36"
                       height="45"
@@ -178,15 +178,15 @@ function Home() {
                       conversing with a designer who speaks the language of
                       creativity.
                     </p>
-                    <ul className="mt-12 flex flex-col gap-y-6 font-clashDisplay text-[22px] font-medium leading-[1.28] tracking-[1px] lg:text-[28px]">
-                      <li className="relative pl-[35px] after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
+                    <ul className="mt-12 ml-8 list-disc flex flex-col gap-y-6 font-clashDisplay text-[18px] font-medium leading-[1.28] tracking-[1px] ">
+                      <li className="relative after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
                         Speak naturally about your design goals.
                       </li>
-                      <li className="relative pl-[35px] after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
+                      <li className="relative after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
                         Enjoy interactions that feel collaborative and
                         intuitive.
                       </li>
-                      <li className="relative pl-[35px] after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
+                      <li className="relative after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
                         Express your style, and let the AI bring it to life.
                       </li>
                     </ul>
@@ -227,14 +227,14 @@ function Home() {
                       workflow. Connect with popular software and platforms, and
                       keep your creative process flowing without interruptions.
                     </p>
-                    <ul className="mt-12 flex flex-col gap-y-6 font-clashDisplay text-[18px] font-medium leading-[1.28] tracking-[1px] lg:text-[28px]">
-                      <li className="relative pl-[35px] after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
+                    <ul className="mt-12 ml-8 list-disc flex flex-col gap-y-6 font-clashDisplay text-[18px] font-medium leading-[1.28] tracking-[1px] ]">
+                      <li className="relative after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
                         Explore Integrations
                       </li>
-                      <li className="relative pl-[35px] after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
+                      <li className="relative after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
                         Connect with your favorite design tools.
                       </li>
-                      <li className="relative pl-[35px] after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
+                      <li className="relative after:absolute after:left-[10px] after:top-3 after:h-[15px] after:w-[15px] after:rounded-[50%] after:bg-colorViolet">
                         Enhance your workflow without disruptions.
                       </li>
                     </ul>
