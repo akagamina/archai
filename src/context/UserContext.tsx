@@ -49,16 +49,13 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log("event: ", event);
         const user = session?.user;
         if (user) {
           setUser(user as any);
           setCookie("Bearer", session?.access_token, {
             expires: new Date((session?.expires_at as number) * 1000),
           });
-          router.push("/");
           setLoading(false);
-          event === "INITIAL_SESSION" && toast.success("Welcome back!");
         } else {
           router.push("/sign-in");
           setTimeout(() => {
