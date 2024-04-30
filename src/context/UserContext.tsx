@@ -57,7 +57,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
           });
           setLoading(false);
         } else {
-          router.push("/sign-in");
           setTimeout(() => {
             setUser(null);
             setLoading(false);
