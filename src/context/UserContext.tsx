@@ -49,6 +49,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log("session: ", session);
+        console.log("event: ", event);
         const user = session?.user;
         if (user) {
           setUser(user as any);
@@ -60,6 +62,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
           setTimeout(() => {
             setUser(null);
             setLoading(false);
+            if (pathname !== "/") router.push("/sign-in");
           }, 1000);
         }
       }
@@ -69,7 +72,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       authListener?.subscription.unsubscribe();
       console.log("asd");
     };
-  }, [router, setUser]);
+  }, [pathname, router, setUser]);
 
   return (
     <UserContext.Provider value={{ user, setUser, signOutUser, setLoading }}>
