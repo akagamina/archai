@@ -49,8 +49,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log("session: ", session);
-        console.log("event: ", event);
+        setLoading(true);
         const user = session?.user;
         if (user) {
           setUser(user as any);
@@ -70,19 +69,18 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
     return () => {
       authListener?.subscription.unsubscribe();
-      console.log("asd");
     };
   }, [pathname, router, setUser]);
 
   return (
     <UserContext.Provider value={{ user, setUser, signOutUser, setLoading }}>
-      <div className={`${loading ? "visible" : "invisible"} absolute w-full`}>
-        <Loader />
-      </div>
-      <div className={`${!loading ? "visible" : "invisible"}`}>{children}</div>
-      <div>
-        <Toaster />
-      </div>
+      {loading && (
+        <div className="absolute w-full">
+          <Loader />
+        </div>
+      )}
+      {!loading && children}
+      <Toaster />
     </UserContext.Provider>
   );
 };

@@ -33,7 +33,7 @@ export default function SignIn() {
       const response = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/sign-in/`,
+          emailRedirectTo: `${window.location.origin}`,
         },
       });
       console.log(response);
@@ -72,22 +72,29 @@ export default function SignIn() {
             </div>
           </div>
         ) : (
-          <div className="max-w-md m-auto">
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              className="px-4 py-2 border rounded w-full focus-within:outline-none focus-within:border-0 focus-within:ring-0 "
-            />
-            <button
-              onClick={handleSendMagicLink}
-              disabled={!email || !emailRegex.test(email)}
-              className="mt-4 w-full bg-[#33CC95] text-white py-2 rounded disabled:bg-zinc-400"
-            >
-              Send Magic Link
-            </button>
-          </div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSendMagicLink();
+            }}
+          >
+            <div className="max-w-md m-auto">
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="px-4 py-2 border rounded w-full focus-within:outline-none focus-within:border-0 focus-within:ring-0 "
+              />
+              <button
+                onClick={handleSendMagicLink}
+                disabled={!email || !emailRegex.test(email)}
+                className="mt-4 w-full bg-[#33CC95] text-white py-2 rounded disabled:bg-zinc-400"
+              >
+                Send Magic Link
+              </button>
+            </div>
+          </form>
         )}
       </div>
     </div>

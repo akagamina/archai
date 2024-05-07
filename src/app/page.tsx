@@ -5,8 +5,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ImageSlider from "@/components/ImageSlider";
+import { useUser } from "@/context/UserContext";
 
 function Home() {
+  const { user } = useUser();
+  console.log("user: ", user);
   return (
     <>
       <head>
@@ -32,7 +35,7 @@ function Home() {
                       your design potential 24/7.
                     </p>
                     <Link
-                      href="/take-shot"
+                      href={user ? "/take-shot" : "/sign-in"}
                       className="jos button relative z-[1] inline-flex items-center gap-3 rounded-[50px] border-none bg-colorViolet py-[18px] text-white after:bg-colorOrangyRed hover:text-white"
                     >
                       Start Designing for Free

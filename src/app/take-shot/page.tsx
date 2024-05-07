@@ -38,7 +38,11 @@ function TakeAShot() {
   }, [image, setLoading, user?.uid]);
 
   // if device is mobile return text to use desktop
-  if (typeof window !== "undefined" && window.innerWidth > 768) {
+
+  // detect if the device is mobile via agent string
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  if (typeof window !== "undefined" && window.innerWidth > 768 && !isMobile) {
     return (
       <div className="flex items-center justify-center h-screen">
         <p className="text-2xl text-black">
